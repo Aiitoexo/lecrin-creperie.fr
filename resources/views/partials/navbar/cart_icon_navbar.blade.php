@@ -1,6 +1,6 @@
 @if (isset($all_sections))
     <div class="flex justify-center items-center relative">
-        <a href="{{ route('panier') }}" class="relative">
+        <a href="{{ route('cart') }}" class="relative">
             <svg class="h-12 lg:h-16 fill-current text-gray-800"
                  xmlns="http://www.w3.org/2000/svg"
                  viewBox="0 0 480 480">

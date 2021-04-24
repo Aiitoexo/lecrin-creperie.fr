@@ -7,14 +7,13 @@ use App\Http\Controllers\admin\IngredientAllergenController;
 use App\Http\Controllers\admin\IngredientController;
 use App\Http\Controllers\admin\RecipeController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\CarteController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\CheckoutPayPalController;
 use App\Http\Controllers\CheckoutStripeController;
-use App\Http\Controllers\CommandController;
+use App\Http\Controllers\admin\CommandController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderInfoController;
-use App\Http\Controllers\PanierController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StripePaymentController;
 use Illuminate\Support\Facades\Route;
@@ -32,22 +31,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('homepage');
 
-Route::prefix('carte')->group(function () {
-    Route::get('/', [CarteController::class, 'index'])->name('carte');
+Route::prefix('menu')->group(function () {
+    Route::get('/', [MenuController::class, 'index'])->name('menu');
     Route::get('access', [AccessCarteController::class, 'index'])->name('access');
-    Route::post('access/verif', [AccessCarteController::class, 'verif'])->name('verif_access');
+    Route::post('access/verification', [AccessCarteController::class, 'verification'])->name('verification.access');
 });
 
 Route::prefix('cart')->group(function () {
+    Route::post('/', [CartController::class, 'index'])->name('cart');
     Route::post('add/item', [CartController::class, 'store'])->name('add.item');
     Route::post('delete/item/{id}', [CartController::class, 'destroy'])->name('delete.item');
     Route::post('less/item/{id}', [CartController::class, 'lessItem'])->name('less.item');
     Route::post('more/item/{id}', [CartController::class, 'moreItem'])->name('more.item');
-});
 
-Route::prefix('panier')->group(function () {
-    Route::post('/', [PanierController::class, 'index'])->name('panier');
-    Route::get('info', [OrderInfoController::class, 'index'])->name('order.info');
+    Route::get('information', [OrderInfoController::class, 'index'])->name('order.info');
     Route::get('remove', [OrderInfoController::class, 'flush_cart'])->name('order.flush');
 });
 

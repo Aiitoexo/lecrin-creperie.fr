@@ -16,9 +16,9 @@ class CreateAllergensTable extends Migration
         Schema::create('allergens', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('menu');
-            $table->foreign('menu')->references('id')->on('menu_items')->onDelete('cascade');
+            $table->foreign('menu_id')->references('id')->on('menu_items')->onDelete('cascade');
             $table->unsignedBigInteger('allergen');
-            $table->foreign('allergen')->references('id')->on('type_allergens')->onDelete('cascade');
+            $table->foreign('allergen_id')->references('id')->on('all_allergens')->onDelete('cascade');
             $table->timestamps();
         });
     }

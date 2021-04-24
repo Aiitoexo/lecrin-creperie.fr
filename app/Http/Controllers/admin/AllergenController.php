@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\TypeAllergen;
-use App\Models\TypeIngredient;
+use App\Models\AllAllergen;
+use App\Models\AllIngredient;
 use http\Cookie;
 use Illuminate\Http\Request;
 use function date;
@@ -61,7 +61,7 @@ class AllergenController extends Controller
 
         $data['img'] = sprintf('storage/img_allergens/%s', $file_name);
 
-        TypeAllergen::create($data);
+        AllAllergen::create($data);
 
         return redirect(route('admin.ingredient.allergen'));
     }
@@ -85,9 +85,9 @@ class AllergenController extends Controller
      */
     public function edit($id)
     {
-        $allergen_item = TypeAllergen::findOrFail($id);
-        $all_ingredients = TypeIngredient::all();
-        $all_allergens = TypeAllergen::all();
+        $allergen_item = AllAllergen::findOrFail($id);
+        $all_ingredients = AllIngredient::all();
+        $all_allergens = AllAllergen::all();
 
         return view('pages.admin.ingredient_allergen.index', [
             'allergen_item' => $allergen_item,
@@ -112,7 +112,7 @@ class AllergenController extends Controller
         ]);
 
 
-        $ingredient = TypeAllergen::findOrFail($id);
+        $ingredient = AllAllergen::findOrFail($id);
         $ingredient->update($data);
 
         return redirect(route('admin.ingredient.allergen'));
@@ -126,7 +126,7 @@ class AllergenController extends Controller
      */
     public function destroy($id)
     {
-        $ingredient = TypeAllergen::findOrFail($id);
+        $ingredient = AllAllergen::findOrFail($id);
         $ingredient->delete();
         return redirect()->back();
     }

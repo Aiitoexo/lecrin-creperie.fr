@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\TypeAllergen;
-use App\Models\TypeIngredient;
+use App\Models\AllAllergen;
+use App\Models\AllIngredient;
 use function view;
 
 class AdminController extends Controller
 {
     public function index()
     {
-        $all_allergens = TypeAllergen::all();
-        $all_ingredients = TypeIngredient::all();
+        $all_allergens = AllAllergen::all();
+        $all_ingredients = AllIngredient::all();
 
         return view('pages.admin.index', [
             'all_ingredients' => $all_ingredients,

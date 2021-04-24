@@ -10,7 +10,7 @@ use function dd;
 use function session;
 use function view;
 
-class CarteController extends Controller
+class MenuController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +35,7 @@ class CarteController extends Controller
             $count_cart += $item['quantity'];
         }
 
-        return view('pages.carte.index', [
+        return view('pages.menu.index', [
             'all_sections' => $all_sections,
             'all_burgers' => $all_burgers,
             'all_wraps' => $all_wraps,

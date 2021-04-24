@@ -55,7 +55,7 @@
         </div>
 
         <div id="postal" class="bg-yellow-500 border-8 border-gray-800 rounded-6xl h-full w-full absolute xl:py-10 top-0 left-0">
-            <form action="{{ route('verif_access') }}" method="post" class="flex flex-col gap-y-4 justify-center items-center p-4">
+            <form action="{{ route('verification.access') }}" method="post" class="flex flex-col gap-y-4 justify-center items-center p-4">
                 @csrf
                 <label for="postal_code">Code Postal</label>
                 <input class="w-full" name="postal_code" type="text">
@@ -67,7 +67,7 @@
 
     <form id="emporter"
           class="bg-yellow-500 border-8 border-gray-800 rounded-6xl w-full h-full xl:col-span-1 z-10"
-          action="{{ route('verif_access') }}" method="post">
+          action="{{ route('verification.access') }}" method="post">
         @csrf
         <input name="type_command" type="hidden" value="emporter">
         <button class="h-full w-full flex flex-col justify-center items-center" type="submit">

@@ -7,8 +7,8 @@ use App\Models\Ingredient;
 use App\Models\MenuItem;
 use App\Models\Postal;
 use App\Models\SectionMenu;
-use App\Models\TypeAllergen;
-use App\Models\TypeIngredient;
+use App\Models\AllAllergen;
+use App\Models\AllIngredient;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use function count;
@@ -79,13 +79,13 @@ class DatabaseSeeder extends Seeder
         }
 
         for ($i = 0; $i < count($table_ingredient); $i++) {
-            TypeIngredient::create([
+            AllIngredient::create([
                 'name' => $table_ingredient[$i],
             ]);
         }
 
         for ($i = 0; $i < count($table_allergen); $i++) {
-            TypeAllergen::create([
+            AllAllergen::create([
                 'name' => $table_allergen[$i],
                 'img' => 'https://placeimg.com/480/480/nature'
             ]);
@@ -94,7 +94,7 @@ class DatabaseSeeder extends Seeder
         MenuItem::factory(50)->create();
 
         $all_menu = MenuItem::all();
-        $all_ingredient = TypeIngredient::all();
+        $all_ingredient = AllIngredient::all();
         $count_ingredient = count($table_ingredient);
 
         for ($i = 0; $i < count($all_menu); $i++) {
@@ -107,7 +107,7 @@ class DatabaseSeeder extends Seeder
             }
         }
 
-        $all_allergen = TypeAllergen::all();
+        $all_allergen = AllAllergen::all();
         $count_allergen = count($table_allergen);
 
         for ($i = 0; $i < count($all_menu); $i++) {

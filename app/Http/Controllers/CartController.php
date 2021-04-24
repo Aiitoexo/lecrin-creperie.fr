@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use function back;
 use function redirect;
 use function route;
+use function session;
+use function view;
 
 class CartController extends Controller
 {
@@ -15,9 +17,11 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-
+        return view('pages.cart.index', [
+            'cart' => session('cart')
+        ]);
     }
 
     /**
@@ -45,7 +49,7 @@ class CartController extends Controller
 
         $cart->addItem($data['id'], $data['quantity']);
 
-        return redirect(route('carte'));
+        return redirect(route('menu'));
     }
 
     /**

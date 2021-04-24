@@ -113,7 +113,7 @@ class StripePaymentController extends Controller
     {
         $orderInfo = Order::findOrFail($id);
 
-        return view('pages.panier.order_info', [
+        return view('pages.cart.order_info', [
             'orderInfo' => $orderInfo
         ]);
     }

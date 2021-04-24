@@ -13,11 +13,11 @@
     @endif
 
     <div class="xl:mt-56 mt-28 overflow-hidden">
-        @include('pages.carte.partials.burger')
-        @include('pages.carte.partials.wrap')
-        @include('pages.carte.partials.desserts')
-        @include('pages.carte.partials.boisson')
-        @include('pages.carte.partials.box_apero')
+        @include('pages.menu.partials.burger')
+        @include('pages.menu.partials.wrap')
+        @include('pages.menu.partials.desserts')
+        @include('pages.menu.partials.boisson')
+        @include('pages.menu.partials.box_apero')
 
         @include('partials.cart.cart')
     </div>

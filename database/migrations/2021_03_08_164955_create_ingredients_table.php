@@ -16,9 +16,9 @@ class CreateIngredientsTable extends Migration
         Schema::create('ingredients', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('menu');
-            $table->foreign('menu')->references('id')->on('menu_items')->onDelete('cascade');
+            $table->foreign('menu_id')->references('id')->on('menu_items')->onDelete('cascade');
             $table->unsignedBigInteger('ingredient');
-            $table->foreign('ingredient')->references('id')->on('type_ingredients')->onDelete('cascade');
+            $table->foreign('ingredient_id')->references('id')->on('all_ingredients')->onDelete('cascade');
             $table->timestamps();
         });
 

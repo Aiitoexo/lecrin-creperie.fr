@@ -5,17 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TypeAllergen extends Model
+class AllIngredient extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-      'name',
-      'img'
+        'name',
     ];
 
-    public function isMenuAllergen()
+    public function isMenuIngredient()
     {
-        return $this->belongsToMany(MenuItem::class, 'allergens', 'allergen', 'menu');
+        return $this->belongsToMany(MenuItem::class, 'ingredients', 'ingredient', 'menu');
     }
 }

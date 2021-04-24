@@ -20,12 +20,12 @@ class MenuItem extends Model
 
     public function ingredientRecipe()
     {
-        return $this->belongsToMany(TypeIngredient::class, 'ingredients', 'menu', 'ingredient');
+        return $this->belongsToMany(AllIngredient::class, 'ingredients', 'menu', 'ingredient');
     }
 
     public function allergenRecipe()
     {
-        return $this->belongsToMany(TypeAllergen::class, 'allergens', 'menu', 'allergen');
+        return $this->belongsToMany(AllAllergen::class, 'allergens', 'menu', 'allergen');
     }
 
     public function sectionMenu()

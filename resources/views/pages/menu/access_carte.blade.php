@@ -5,14 +5,14 @@
         <div id="livraison" class="col-span-6 h-full bg-blue-300"></div>
         <div class="relative col-span-6 h-full bg-pink-400">
             <form id="emporter" class="absolute h-full w-full bg-blue-300 z-10"
-                  action="{{ route('verif_access') }}" method="post">
+                  action="{{ route('verification.access') }}" method="post">
                 @csrf
                 <input name="type_command" type="hidden" value="emporter">
                 <button class="h-full w-full" type="submit"></button>
             </form>
 
             <div id="postal" class="absolute h-full w-full bg-red-300 py-10">
-                <form action="{{ route('verif_access') }}" method="post"
+                <form action="{{ route('verification.access') }}" method="post"
                       class="flex flex-col gap-y-4 justify-center items-center">
                     @csrf
                     <label for="postal_code">Code Postal</label>

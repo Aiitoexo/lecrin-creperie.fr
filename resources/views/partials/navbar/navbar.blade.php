@@ -18,7 +18,7 @@
         </div>
         @if (isset($all_sections))
             <div class="col-span-1 flex justify-center items-center">
-                <a href="{{ route('panier') }}" class="relative">
+                <a href="{{ route('cart') }}" class="relative">
                     <svg class="h-12 lg:h-16 fill-current text-gray-800"
                          xmlns="http://www.w3.org/2000/svg"
                          viewBox="0 0 480 480">
@@ -42,7 +42,7 @@
             <div class="flex flex-col justify-center items-center h-full relative">
                 <a href="{{ route('login') }}">Admin</a>
                 <a href="{{ route('homepage') }}">Accueil</a>
-                <a href="{{ route('carte') }}">Carte</a>
+                <a href="{{ route('menu') }}">Carte</a>
                 <a href="{{ route('contact') }}">Contact</a>
 
                 <div class="absolute top-0 right-0">
@@ -78,7 +78,7 @@
                 <ul class="h-full gap-x-5 flex justify-end mr-20 items-center">
                     <li class="text-2xl text-white"><a href="{{ route('login') }}">Admin</a></li>
                     <li class="text-2xl text-white"><a href="{{ route('homepage') }}">Accueil</a></li>
-                    <li class="text-2xl text-white"><a href="{{ route('carte') }}">Carte</a></li>
+                    <li class="text-2xl text-white"><a href="{{ route('menu') }}">Carte</a></li>
                     <li class="text-2xl text-white"><a href="{{ route('contact') }}">Contact</a></li>
                 </ul>
             </div>

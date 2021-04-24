@@ -18,10 +18,10 @@ class AccessCarteController extends Controller
      */
     public function index()
     {
-        return view('pages.carte.access_carte');
+        return view('pages.menu.access_carte');
     }
 
-    public function verif(Request $request)
+    public function verification(Request $request)
     {
         $type_command = $request->validate([
             'type_command' => 'string|required',
@@ -31,19 +31,19 @@ class AccessCarteController extends Controller
         if ($request['type_command'] == 'emporter') {
 
             session()->put('type_command', $type_command['type_command']);
-            return redirect(route('carte'));
+            return redirect(route('menu'));
 
         } elseif ($request['type_command'] == 'livraison') {
 
             if (Postal::where('postal_code', $type_command['postal_code'])->exists()) {
 
                 session()->put('type_command', $type_command['type_command']);
-                return  redirect(route('carte'));
+                return  redirect(route('menu'));
 
             } else {
 
                 session()->flash('bad_postal', 'Cette commune n\'est pas prise en charge pour la livraison');
-                return redirect(route('carte'));
+                return redirect(route('menu'));
 
             }
 

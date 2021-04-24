@@ -19,13 +19,8 @@
             <div class="test bg-cover bg-center bg-no-repeat fixed top-0 h-screen w-screen"
                  style="background-image: url('{{ asset('img/bg-header.png') }}')">
             </div>
+
             @yield('body')
-
-
-            <form action="" method="post">
-                @csrf
-
-            </form>
         </div>
     </body>
     @yield('js')

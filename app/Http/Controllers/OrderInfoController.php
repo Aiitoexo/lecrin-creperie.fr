@@ -22,13 +22,13 @@ class OrderInfoController extends Controller
      */
     public function index()
     {
-        return view('pages.panier.order_info', [
+        return view('pages.cart.order_info', [
         ]);
     }
 
     public function flush_cart() {
         session()->forget('cart');
-        return redirect(route('carte'));
+        return redirect(route('menu'));
     }
 
 }

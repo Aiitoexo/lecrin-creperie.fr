@@ -7,8 +7,8 @@ use App\Models\Allergen;
 use App\Models\Ingredient;
 use App\Models\MenuItem;
 use App\Models\SectionMenu;
-use App\Models\TypeAllergen;
-use App\Models\TypeIngredient;
+use App\Models\AllAllergen;
+use App\Models\AllIngredient;
 use Illuminate\Http\Request;
 use function date;
 use function floatval;
@@ -29,8 +29,8 @@ class RecipeController extends Controller
     public function index(Request $request)
     {
         $all_sections = SectionMenu::all();
-        $all_ingredients = TypeIngredient::all();
-        $all_allergens = TypeAllergen::all();
+        $all_ingredients = AllIngredient::all();
+        $all_allergens = AllAllergen::all();
         $all_items_menu = MenuItem::all();
 
         if ($request['section'] && $request['section'] !== 0) {
@@ -130,8 +130,8 @@ class RecipeController extends Controller
     public function edit($id, Request $request)
     {
         $all_sections = SectionMenu::all();
-        $all_ingredients = TypeIngredient::all();
-        $all_allergens = TypeAllergen::all();
+        $all_ingredients = AllIngredient::all();
+        $all_allergens = AllAllergen::all();
         $all_items_menu = MenuItem::all();
 
         $item_menu = MenuItem::findOrFail($id);

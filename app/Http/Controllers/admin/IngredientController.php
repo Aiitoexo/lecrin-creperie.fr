@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\TypeAllergen;
-use App\Models\TypeIngredient;
+use App\Models\AllAllergen;
+use App\Models\AllIngredient;
 use Illuminate\Http\Request;
 use function date;
 use function dd;
@@ -58,7 +58,7 @@ class IngredientController extends Controller
 
         $data['img'] = sprintf('storage/img_ingredients/%s', $file_name);
 
-        TypeIngredient::create($data);
+        AllIngredient::create($data);
 
         return redirect(route('admin.ingredient.allergen'));
     }
@@ -82,9 +82,9 @@ class IngredientController extends Controller
      */
     public function edit($id)
     {
-        $ingredient_item = TypeIngredient::findOrFail($id);
-        $all_ingredients = TypeIngredient::all();
-        $all_allergens = TypeAllergen::all();
+        $ingredient_item = AllIngredient::findOrFail($id);
+        $all_ingredients = AllIngredient::all();
+        $all_allergens = AllAllergen::all();
 
         return view('pages.admin.ingredient_allergen.index', [
             'ingredient_item' => $ingredient_item,
@@ -107,7 +107,7 @@ class IngredientController extends Controller
            'name' => 'required|string'
         ]);
 
-        $ingredient = TypeIngredient::findOrFail($id);
+        $ingredient = AllIngredient::findOrFail($id);
         $ingredient->update($data);
 
         return redirect(route('admin.ingredient.allergen'));
@@ -121,7 +121,7 @@ class IngredientController extends Controller
      */
     public function destroy($id)
     {
-        $ingredient = TypeIngredient::findOrFail($id);
+        $ingredient = AllIngredient::findOrFail($id);
         $ingredient->delete();
         return redirect()->back();
     }

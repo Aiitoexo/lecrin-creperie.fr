@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\TypeAllergen;
-use App\Models\TypeIngredient;
+use App\Models\AllAllergen;
+use App\Models\AllIngredient;
 use Illuminate\Http\Request;
 use function view;
 
+
+//TODO refactore les function ingredient et alergen ici et suppr les controller ingrdient et allergen
 class IngredientAllergenController extends Controller
 {
     /**
@@ -17,8 +19,8 @@ class IngredientAllergenController extends Controller
      */
     public function index()
     {
-        $all_ingredients = TypeIngredient::all();
-        $all_allergens = TypeAllergen::all();
+        $all_ingredients = AllIngredient::all();
+        $all_allergens = AllAllergen::all();
 
         return view('pages.admin.ingredient_allergen.index', [
             'all_ingredients' => $all_ingredients,
