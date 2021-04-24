@@ -1,0 +1,37 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.test {
+    z-index: -1;
+    filter: grayscale(50%);
+}
+
+.filter-bg {
+    filter: grayscale(40%) brightness(60%);
+}
+
+#livraison, #sub_nav_mobile {
+    transition: ease 0.5s;
+}
+
+.button {
+    @apply px-4 py-2 rounded-full bg-gray-800 text-white
+}
+
+.button-cancel {
+    @apply px-4 py-2 rounded-full bg-yellow-500 text-gray-800
+}
+
+.button {
+    box-shadow: 0px 0px 8px rgba(0, 0 , 0 ,0.5);
+}
+
+.button:focus {
+    transition: ease 0.5s;
+    box-shadow: inset 0px 0px 8px rgba(0, 0 , 0 ,0.5);
+}
