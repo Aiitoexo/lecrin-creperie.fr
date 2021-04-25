@@ -22,11 +22,11 @@ class MenuController extends Controller
         $bad_postal = session('bad_postal');
 
         $all_sections = SectionMenu::all();
-        $all_burgers = MenuItem::all()->where('section', 1);
-        $all_wraps = MenuItem::all()->where('section', 2);
-        $all_desserts = MenuItem::all()->where('section', 3);
-        $all_boissons = MenuItem::all()->where('section', 4);
-        $all_box_aperos = MenuItem::all()->where('section', 5);
+        $all_burgers = MenuItem::all()->where('section_id', 1);
+        $all_wraps = MenuItem::all()->where('section_id', 2);
+        $all_desserts = MenuItem::all()->where('section_id', 3);
+        $all_boissons = MenuItem::all()->where('section_id', 4);
+        $all_box_aperos = MenuItem::all()->where('section_id', 5);
 
         $cart = session('cart');
         $count_cart = 0;

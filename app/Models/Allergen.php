@@ -10,7 +10,12 @@ class Allergen extends Model
     use HasFactory;
 
     protected $fillable = [
-      'menu',
-      'allergen'
+      'name',
+      'img'
     ];
+
+    public function isMenuAllergen()
+    {
+        return $this->belongsToMany(MenuItem::class, 'allergen_recipes', 'allergen_id', 'menu_id');
+    }
 }

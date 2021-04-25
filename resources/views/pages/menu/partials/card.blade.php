@@ -9,7 +9,7 @@
         <div class="h-3/5 flex flex-col justify-between">
             <div class="h-4/5 bg-yellow-500 grid grid-cols-12 py-2 px-4">
                 <div class="col-span-8 border-r-2 border-gray-800">
-                    @foreach ($item->ingredientRecipe as $ingredient)
+                    @foreach ($item->ingredientItemRecipe as $ingredient)
                         <p>- {{ $ingredient->name }}</p>
                     @endforeach
                 </div>

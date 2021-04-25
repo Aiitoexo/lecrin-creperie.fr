@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Allergen;
-use App\Models\Ingredient;
+use App\Models\AllergenRecipe;
+use App\Models\IngredientRecipe;
 use App\Models\MenuItem;
 use App\Models\SectionMenu;
-use App\Models\AllAllergen;
-use App\Models\AllIngredient;
+use App\Models\Allergen;
+use App\Models\Ingredient;
 use Illuminate\Http\Request;
 use function date;
 use function floatval;
@@ -29,8 +29,8 @@ class RecipeController extends Controller
     public function index(Request $request)
     {
         $all_sections = SectionMenu::all();
-        $all_ingredients = AllIngredient::all();
-        $all_allergens = AllAllergen::all();
+        $all_ingredients = Ingredient::all();
+        $all_allergens = Allergen::all();
         $all_items_menu = MenuItem::all();
 
         if ($request['section'] && $request['section'] !== 0) {
@@ -94,14 +94,14 @@ class RecipeController extends Controller
         $data_allergens = $data['allergens'];
 
         foreach ($data_ingredients as $ingredient) {
-            Ingredient::create([
+            IngredientRecipe::create([
                 'menu' => $menu_item->id,
                 'ingredient' => $ingredient
             ]);
         }
 
         foreach ($data_allergens as $allergen) {
-            Allergen::create([
+            AllergenRecipe::create([
                 'menu' => $menu_item->id,
                 'allergen' => $allergen
             ]);
@@ -130,8 +130,8 @@ class RecipeController extends Controller
     public function edit($id, Request $request)
     {
         $all_sections = SectionMenu::all();
-        $all_ingredients = AllIngredient::all();
-        $all_allergens = AllAllergen::all();
+        $all_ingredients = Ingredient::all();
+        $all_allergens = Allergen::all();
         $all_items_menu = MenuItem::all();
 
         $item_menu = MenuItem::findOrFail($id);
@@ -193,8 +193,8 @@ class RecipeController extends Controller
      */
     public function destroy($id)
     {
-        $allergen = Allergen::where('menu', $id);
-        $ingredient = Ingredient::where('menu', $id);
+        $allergen = AllergenRecipe::where('menu', $id);
+        $ingredient = IngredientRecipe::where('menu', $id);
         $menu_item = MenuItem::findOrFail($id);
         $allergen->delete();
         $ingredient->delete();

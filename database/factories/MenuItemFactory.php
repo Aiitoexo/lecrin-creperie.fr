@@ -32,7 +32,7 @@ class MenuItemFactory extends Factory
             'img' => 'https://placeimg.com/480/480/nature',
             'alt_img' => $this->faker->text,
             'price' => rand(9, 25),
-            'section' => $all_section[rand(0, ($count_section - 1))]->id,
+            'section_id' => $all_section[rand(0, ($count_section - 1))]->id,
             'menu' => rand(0, 1)
         ];
     }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAllIngredientsTable extends Migration
+class CreateAllergensTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateAllIngredientsTable extends Migration
      */
     public function up()
     {
-        Schema::create('all_ingredients', function (Blueprint $table) {
+        Schema::create('allergens', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
+            $table->string('img');
+            //            image -> Unique
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreateAllIngredientsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_ingredients');
+        Schema::dropIfExists('type_allergens');
     }
 }

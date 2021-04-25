@@ -18,14 +18,14 @@ class MenuItem extends Model
 
     use HasFactory;
 
-    public function ingredientRecipe()
+    public function ingredientItemRecipe()
     {
-        return $this->belongsToMany(AllIngredient::class, 'ingredients', 'menu', 'ingredient');
+        return $this->belongsToMany(Ingredient::class, 'ingredient_recipes', 'menu_id', 'ingredient_id');
     }
 
-    public function allergenRecipe()
+    public function allergenItemRecipe()
     {
-        return $this->belongsToMany(AllAllergen::class, 'allergens', 'menu', 'allergen');
+        return $this->belongsToMany(Allergen::class, 'allergen_recipes', 'menu_id', 'allergen_id');
     }
 
     public function sectionMenu()

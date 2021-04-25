@@ -10,7 +10,11 @@ class Ingredient extends Model
     use HasFactory;
 
     protected $fillable = [
-      'menu',
-      'ingredient'
+        'name',
     ];
+
+    public function isMenuIngredient()
+    {
+        return $this->belongsToMany(MenuItem::class, 'ingredient_recipes', 'ingredient_id', 'menu_id');
+    }
 }

@@ -20,7 +20,7 @@ class CreateMenuItemsTable extends Migration
             $table->text('alt_img');
 //            img - > unique
             $table->float('price');
-            $table->unsignedBigInteger('section');
+            $table->unsignedBigInteger('section_id');
             $table->foreign('section_id')->references('id')->on('section_menus');
             $table->boolean('menu');
             $table->timestamps();

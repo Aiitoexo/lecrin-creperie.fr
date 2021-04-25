@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
-use App\Models\Allergen;
-use App\Models\Ingredient;
+use App\Models\AllergenRecipe;
+use App\Models\IngredientRecipe;
 use App\Models\MenuItem;
 use App\Models\Postal;
 use App\Models\SectionMenu;
-use App\Models\AllAllergen;
-use App\Models\AllIngredient;
+use App\Models\Allergen;
+use App\Models\Ingredient;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use function count;
@@ -79,13 +79,13 @@ class DatabaseSeeder extends Seeder
         }
 
         for ($i = 0; $i < count($table_ingredient); $i++) {
-            AllIngredient::create([
+            Ingredient::create([
                 'name' => $table_ingredient[$i],
             ]);
         }
 
         for ($i = 0; $i < count($table_allergen); $i++) {
-            AllAllergen::create([
+            Allergen::create([
                 'name' => $table_allergen[$i],
                 'img' => 'https://placeimg.com/480/480/nature'
             ]);
@@ -94,28 +94,28 @@ class DatabaseSeeder extends Seeder
         MenuItem::factory(50)->create();
 
         $all_menu = MenuItem::all();
-        $all_ingredient = AllIngredient::all();
+        $all_ingredient = Ingredient::all();
         $count_ingredient = count($table_ingredient);
 
         for ($i = 0; $i < count($all_menu); $i++) {
             $rand = rand(3, 5);
             for ($j = 0; $j < $rand; $j++) {
-                Ingredient::create([
-                    'menu' => $i + 1,
-                    'ingredient' => $all_ingredient[$j]->id
+                IngredientRecipe::create([
+                    'menu_id' => $i + 1,
+                    'ingredient_id' => $all_ingredient[$j]->id
                 ]);
             }
         }
 
-        $all_allergen = AllAllergen::all();
+        $all_allergen = Allergen::all();
         $count_allergen = count($table_allergen);
 
         for ($i = 0; $i < count($all_menu); $i++) {
             $rand = rand(1, ($count_allergen - 1));
             for ($j = 0; $j < $rand; $j++) {
-                Allergen::create([
-                    'menu' => $i + 1,
-                    'allergen' => $all_allergen[$j]->id
+                AllergenRecipe::create([
+                    'menu_id' => $i + 1,
+                    'allergen_id' => $all_allergen[$j]->id
                 ]);
             }
         }

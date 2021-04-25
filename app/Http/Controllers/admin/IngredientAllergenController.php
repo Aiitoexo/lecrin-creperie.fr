@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\AllAllergen;
-use App\Models\AllIngredient;
+use App\Models\Allergen;
+use App\Models\Ingredient;
 use Illuminate\Http\Request;
 use function view;
 
@@ -19,13 +19,13 @@ class IngredientAllergenController extends Controller
      */
     public function index()
     {
-        $all_ingredients = AllIngredient::all();
-        $all_allergens = AllAllergen::all();
+        $all_ingredients = Ingredient::all();
+        $all_allergens = Allergen::all();
 
         return view('pages.admin.ingredient_allergen.index', [
             'all_ingredients' => $all_ingredients,
             'all_allergens' => $all_allergens,
-            'title' => 'Ingredient Allergen | Admin'
+            'title' => 'IngredientRecipe AllergenRecipe | Admin'
         ]);
 
     }
