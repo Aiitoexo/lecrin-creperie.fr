@@ -30,6 +30,6 @@ class CreateAllergenRecipesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('allergens');
+        Schema::dropIfExists('allergen_recipes');
     }
 }
