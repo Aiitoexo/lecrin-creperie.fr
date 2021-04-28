@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TvaRestaurant;
 use App\Services\CartService;
 use Illuminate\Http\Request;
 use function session;

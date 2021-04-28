@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('main')
-    <div class="mt-72 w-5/12 mx-auto h-auto bg-gray-800 rounded-3xl border-2 border-yellow-500 pb-10 pl-10 pr-10 pt-6">
+    <div class="w-5/12 mx-auto h-auto bg-gray-800 rounded-3xl border-2 border-yellow-500 pb-10 pl-10 pr-10 pt-6">
         @include('pages.payment.partials.response_order_payment')
     </div>
 @endsection

@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('main')
-    <div class="mt-52 w-4/12 h-96 grid grid-cols-12 mx-auto gap-x-6">
+    <div class="w-4/12 h-96 grid grid-cols-12 mx-auto gap-x-6">
         <div id="livraison" class="col-span-6 h-full bg-blue-300"></div>
         <div class="relative col-span-6 h-full bg-pink-400">
             <form id="emporter" class="absolute h-full w-full bg-blue-300 z-10"

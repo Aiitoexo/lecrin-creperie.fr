@@ -3,7 +3,9 @@
 @section('body')
 
     @include('partials.navbar.navbar')
-    @yield('main')
-    @yield('footer')
+    <div class="mt-56">
+        @yield('main')
+        @yield('footer')
+    </div>
 
 @endsection

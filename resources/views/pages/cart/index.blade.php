@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('main')
-    <div class="mt-52 flex justify-center gap-x-6 relative">
+    <div class="flex justify-center gap-x-6 relative">
         <div class="w-6/12">
             @foreach ($cart as $item)
                 <div class="h-24 w-full shadow-2xl rounded-xl py-4 px-6 mb-6 flex items-center justify-center grid grid-cols-12 bg-gray-800 border-2 border-yellow-500">

@@ -70,13 +70,13 @@
                         <div class="w-full bg-white hidden details flex gap-x-4 rounded-b border-t-2 border-gray-800
                         shadow-2xl">
                             <ul>
-                                @foreach($item->ingredientRecipe as $ingredient)
+                                @foreach($item->ingredientItemRecipe as $ingredient)
                                     <li>{{ $ingredient->name }}</li>
                                 @endforeach
                             </ul>
 
                             <ul>
-                                @foreach($item->allergenRecipe as $allergen)
+                                @foreach($item->allergenItemRecipe as $allergen)
                                     <li>{{ $allergen->name }}</li>
                                 @endforeach
                             </ul>

@@ -19,7 +19,11 @@ class CreateMenuItemsTable extends Migration
             $table->string('img');
             $table->text('alt_img');
 //            img - > unique
-            $table->float('price');
+            $table->float('price_ht');
+            $table->unsignedBigInteger('tva_id');
+            $table->foreign('tva_id')->references('id')->on('tva_restaurants');
+            $table->float('total_tva');
+            $table->float('price_ttc');
             $table->unsignedBigInteger('section_id');
             $table->foreign('section_id')->references('id')->on('section_menus');
             $table->boolean('menu');

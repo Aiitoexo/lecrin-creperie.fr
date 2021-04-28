@@ -9,6 +9,7 @@ use App\Models\Postal;
 use App\Models\SectionMenu;
 use App\Models\Allergen;
 use App\Models\Ingredient;
+use App\Models\TvaRestaurant;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use function count;
@@ -91,6 +92,25 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        $all_tva = [
+            [
+                'name_tva' => 'Nourriture',
+                'tva' => '10.00'
+            ],
+            [
+                'name_tva' => 'Alcool',
+                'tva' => '20'
+            ],
+            [
+                'name_tva' => 'Soft',
+                'tva' => '5.5'
+            ],
+        ];
+
+        foreach ($all_tva as $tva) {
+            TvaRestaurant::create($tva);
+        }
+
         MenuItem::factory(50)->create();
 
         $all_menu = MenuItem::all();
@@ -125,5 +145,6 @@ class DatabaseSeeder extends Seeder
                'postal_code' => $table_postal_code[$i]
             ]);
         }
+
     }
 }

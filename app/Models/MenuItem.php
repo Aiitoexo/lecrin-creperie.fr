@@ -30,6 +30,6 @@ class MenuItem extends Model
 
     public function sectionMenu()
     {
-        return $this->belongsTo(SectionMenu::class, 'section');
+        return $this->belongsTo(SectionMenu::class, 'section_id');
     }
 }

@@ -27,10 +27,7 @@
 
             <div class="flex flex-col justify-center items-center h-1/6">
                 <p class="mb-4">Total Commande : {{ session('cart_total', 0) }}</p>
-                <form action="{{ route('cart') }}" method="post">
-                    @csrf
-                    <button class="py-2 px-4 bg-purple-400">Commander</button>
-                </form>
+                <a href="{{ route('cart') }}" class="py-2 px-4 bg-purple-400">Commander</a>
             </div>
         @else
             <div>panier vide</div>

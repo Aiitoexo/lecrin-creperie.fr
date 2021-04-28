@@ -12,7 +12,7 @@
         </div>
     @endif
 
-    <div class="xl:mt-56 mt-28 overflow-hidden">
+    <div class="overflow-hidden">
         @include('pages.menu.partials.burger')
         @include('pages.menu.partials.wrap')
         @include('pages.menu.partials.desserts')

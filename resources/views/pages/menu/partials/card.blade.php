@@ -136,6 +136,6 @@
     </div>
     <div class="absolute bg-gray-800 border-2 border-yellow-500 h-24 w-24 rounded-full -top-5 -right-5 z-20
             flex justify-center items-center text-white">
-        <p class="text-2xl">{{ $item->price }}€</p>
+        <p class="text-2xl">{{ $item->price_ttc }}€</p>
     </div>
 </div>

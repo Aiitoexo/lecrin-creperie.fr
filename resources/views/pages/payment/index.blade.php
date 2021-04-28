@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('main')
-    <div class="mt-72 w-5/12 h-auto mx-auto bg-gray-800 border-2 border-yellow-500 rounded-xl px-6 pb-6 relative">
+    <div class="w-5/12 h-auto mx-auto bg-gray-800 border-2 border-yellow-500 rounded-xl px-6 pb-6 relative">
         <div class="w-full h-auto grid grid-cols-5 gap-x-10">
             <div class="col-span-2 text-white flex flex-col justify-evenly mt-8">
                 <div>Nom : {{ $orderClient->last_name }}</div>

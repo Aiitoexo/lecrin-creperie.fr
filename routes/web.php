@@ -2,17 +2,15 @@
 
 use App\Http\Controllers\AccessCarteController;
 use App\Http\Controllers\admin\AdminController;
-use App\Http\Controllers\admin\AllergenController;
+use App\Http\Controllers\admin\CommandController;
 use App\Http\Controllers\admin\IngredientAllergenController;
-use App\Http\Controllers\admin\IngredientController;
 use App\Http\Controllers\admin\RecipeController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\MenuController;
 use App\Http\Controllers\CheckoutPayPalController;
 use App\Http\Controllers\CheckoutStripeController;
-use App\Http\Controllers\admin\CommandController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\OrderInfoController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\StripePaymentController;
@@ -38,7 +36,7 @@ Route::prefix('menu')->group(function () {
 });
 
 Route::prefix('cart')->group(function () {
-    Route::post('/', [CartController::class, 'index'])->name('cart');
+    Route::get('/', [CartController::class, 'index'])->name('cart');
     Route::post('add/item', [CartController::class, 'store'])->name('add.item');
     Route::post('delete/item/{id}', [CartController::class, 'destroy'])->name('delete.item');
     Route::post('less/item/{id}', [CartController::class, 'lessItem'])->name('less.item');
@@ -53,6 +51,7 @@ Route::get('contact', [ContactController::class, 'index'])->name('contact');
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
     Route::get('/', [AdminController::class, 'index'])->name('admin');
+    Route::post('store/tva', [AdminController::class, 'tva_store'])->name('tva.store');
 
     Route::prefix('command')->group(function () {
         Route::get('/', [CommandController::class, 'index'])->name('command');
@@ -69,22 +68,19 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         Route::delete('destroy/{id}', [RecipeController::class, 'destroy'])->name('recipe.destroy');
     });
 
-    Route::get('ingredient_allergen', [IngredientAllergenController::class, 'index'])->name('ingredient.allergen');
+    Route::prefix('ingredient-allergen')->group(function () {
+        Route::get('/', [IngredientAllergenController::class, 'index'])->name('ingredient.allergen');
 
-    Route::prefix('ingredient')->group(function () {
-        Route::post('store', [IngredientController::class, 'store'])->name('ingredient.store');
-        Route::post('edit/{id}', [IngredientController::class, 'edit'])->name('ingredient.edit');
-        Route::post('update/{id}', [IngredientController::class, 'update'])->name('ingredient.update');
-        Route::delete('destroy/{id}', [IngredientController::class, 'destroy'])->name('ingredient.destroy');
+        Route::post('store/ingredient', [IngredientAllergenController::class, 'ingredient_store'])->name('ingredient.store');
+        Route::post('edit/ingredient/{id}', [IngredientAllergenController::class, 'ingredient_edit'])->name('ingredient.edit');
+        Route::post('update/ingredient/{id}', [IngredientAllergenController::class, 'ingredient_update'])->name('ingredient.update');
+        Route::delete('destroy/ingredient/{id}', [IngredientAllergenController::class, 'ingredient_destroy'])->name('ingredient.destroy');
+
+        Route::post('store/allergen', [IngredientAllergenController::class, 'allergen_store'])->name('allergen.store');
+        Route::post('edit/allergen/{id}', [IngredientAllergenController::class, 'allergen_edit'])->name('allergen.edit');
+        Route::post('update/allergen/{id}', [IngredientAllergenController::class, 'allergen_update'])->name('allergen.update');
+        Route::delete('destroy/allergen/{id}', [IngredientAllergenController::class, 'allergen_destroy'])->name('allergen.destroy');
     });
-
-    Route::prefix('allergen')->group(function () {
-        Route::post('store', [AllergenController::class, 'store'])->name('allergen.store');
-        Route::post('edit/{id}', [AllergenController::class, 'edit'])->name('allergen.edit');
-        Route::post('update/{id}', [AllergenController::class, 'update'])->name('allergen.update');
-        Route::delete('destroy/{id}', [AllergenController::class, 'destroy'])->name('allergen.destroy');
-    });
-
 });
 
 Route::prefix('payment')->group(function () {

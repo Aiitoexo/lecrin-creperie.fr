@@ -12,6 +12,7 @@ use Stripe\Webhook;
 use UnexpectedValueException;
 use function abort;
 use function config;
+use function dd;
 use function floatval;
 use function generateOrderReference;
 use function redirect;
@@ -153,7 +154,7 @@ class StripePaymentController extends Controller
             'line_items' => [[
                 'price_data' => [
                     'currency' => 'eur',
-                    'unit_amount' => (int)$total * 100,
+                    'unit_amount' => (float)$total * 100,
                     'product_data' => [
                         'name' => 'L\' écrin Creperie',
                         'images' => ["https://i.imgur.com/EHyR2nP.png"],

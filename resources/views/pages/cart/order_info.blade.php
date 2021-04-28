@@ -11,7 +11,7 @@
     {{--        @endif--}}
     {{--    @endif--}}
 
-    <div class="mt-52 w-4/12 mx-auto flex justify-center items-center bg-gray-800 border-2 border-yellow-500 px-12 pb-8 rounded-xl relative">
+    <div class="w-4/12 mx-auto flex justify-center items-center bg-gray-800 border-2 border-yellow-500 px-12 pb-8 rounded-xl relative">
         @if (!isset($orderInfo))
             @include('pages.cart.partials.form_info')
         @else
