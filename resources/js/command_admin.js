@@ -1,11 +1,13 @@
 function getCommandEmporter() {
     axios.get('command/emporter').then(function (response) {
 
-        const html = response.data.reverse().reduce(function (carry, command) {
+        const html = response.data.reduce(function (carry, command) {
 
             let items = ''
 
-            for (const item of command.command) {
+            console.log(command)
+
+            for (const item of command.all_items_order) {
                 items += `<div class="col-span-1 flex">
                             <p>${item.name}</p>
                             <p class="ml-2">x${item.quantity}</p>

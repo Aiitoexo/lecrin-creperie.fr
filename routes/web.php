@@ -3,8 +3,9 @@
 use App\Http\Controllers\AccessCarteController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\CommandController;
-use App\Http\Controllers\admin\IngredientAllergenController;
+use App\Http\Controllers\admin\SettingsController;
 use App\Http\Controllers\admin\RecipeController;
+use App\Http\Controllers\admin\PromoController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutPayPalController;
 use App\Http\Controllers\CheckoutStripeController;
@@ -51,7 +52,6 @@ Route::get('contact', [ContactController::class, 'index'])->name('contact');
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
 
     Route::get('/', [AdminController::class, 'index'])->name('admin');
-    Route::post('store/tva', [AdminController::class, 'tva_store'])->name('tva.store');
 
     Route::prefix('command')->group(function () {
         Route::get('/', [CommandController::class, 'index'])->name('command');
@@ -65,21 +65,41 @@ Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
         Route::post('store', [RecipeController::class, 'store'])->name('recipe.store');
         Route::get('edit/{id}', [RecipeController::class, 'edit'])->name('recipe.edit');
         Route::post('update/{id}', [RecipeController::class, 'update'])->name('recipe.update');
+        Route::post('show/{id}', [RecipeController::class, 'show'])->name('recipe.show');
         Route::delete('destroy/{id}', [RecipeController::class, 'destroy'])->name('recipe.destroy');
+        Route::delete('destroy/extra/{id}', [RecipeController::class, 'destroy_extra'])->name('recipe.destroy.extra');
     });
 
-    Route::prefix('ingredient-allergen')->group(function () {
-        Route::get('/', [IngredientAllergenController::class, 'index'])->name('ingredient.allergen');
+    Route::prefix('settings')->group(function () {
+        Route::get('/', [SettingsController::class, 'index'])->name('settings.ingredient.allergen');
+        Route::post('store/tva', [SettingsController::class, 'tva_store'])->name('tva.store');
+        Route::post('update/tva/{id}', [SettingsController::class, 'tva_update'])->name('tva.update');
+        Route::delete('destroy/tva/{id}', [SettingsController::class, 'tva_destroy'])->name('tva.destroy');
 
-        Route::post('store/ingredient', [IngredientAllergenController::class, 'ingredient_store'])->name('ingredient.store');
-        Route::post('edit/ingredient/{id}', [IngredientAllergenController::class, 'ingredient_edit'])->name('ingredient.edit');
-        Route::post('update/ingredient/{id}', [IngredientAllergenController::class, 'ingredient_update'])->name('ingredient.update');
-        Route::delete('destroy/ingredient/{id}', [IngredientAllergenController::class, 'ingredient_destroy'])->name('ingredient.destroy');
+        Route::post('store/postal-code', [SettingsController::class, 'postal_store'])->name('postal.store');
+        Route::delete('destroy/postal-code/{id}', [SettingsController::class, 'postal_destroy'])->name('postal.destroy');
 
-        Route::post('store/allergen', [IngredientAllergenController::class, 'allergen_store'])->name('allergen.store');
-        Route::post('edit/allergen/{id}', [IngredientAllergenController::class, 'allergen_edit'])->name('allergen.edit');
-        Route::post('update/allergen/{id}', [IngredientAllergenController::class, 'allergen_update'])->name('allergen.update');
-        Route::delete('destroy/allergen/{id}', [IngredientAllergenController::class, 'allergen_destroy'])->name('allergen.destroy');
+        Route::post('store/category/ingredient', [SettingsController::class, 'category_ingredient_store'])->name('category.ingredient.store');
+        Route::delete('destroy/category/ingredient/{id}', [SettingsController::class, 'category_ingredient_destroy'])->name('category.ingredient.destroy');
+
+        Route::post('store/category/boisson', [SettingsController::class, 'category_boisson_store'])->name('category.boisson.store');
+        Route::delete('destroy/category/boisson/{id}', [SettingsController::class, 'category_boisson_destroy'])->name('category.boisson.destroy');
+
+        Route::post('store/ingredient', [SettingsController::class, 'ingredient_store'])->name('ingredient.store');
+        Route::post('update/ingredient/{id}', [SettingsController::class, 'ingredient_update'])->name('ingredient.update');
+        Route::delete('destroy/ingredient/{id}', [SettingsController::class, 'ingredient_destroy'])->name('ingredient.destroy');
+
+        Route::post('store/allergen', [SettingsController::class, 'allergen_store'])->name('allergen.store');
+        Route::post('update/allergen/{id}', [SettingsController::class, 'allergen_update'])->name('allergen.update');
+        Route::delete('destroy/allergen/{id}', [SettingsController::class, 'allergen_destroy'])->name('allergen.destroy');
+
+        Route::post('active/command', [SettingsController::class, 'active_command'])->name('active.command');
+        Route::post('active/extras', [SettingsController::class, 'active_extras'])->name('active.extras');
+    });
+
+    Route::prefix('promo')->group(function () {
+        Route::get('/', [PromoController::class, 'index'])->name('promo');
+        Route::post('create/promo', [PromoController::class, 'create_promo'])->name('create.promo');
     });
 });
 

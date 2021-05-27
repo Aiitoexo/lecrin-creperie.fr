@@ -11,10 +11,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 function getCommandEmporter() {
   axios.get('command/emporter').then(function (response) {
-    var html = response.data.reverse().reduce(function (carry, command) {
+    var html = response.data.reduce(function (carry, command) {
       var items = '';
+      console.log(command);
 
-      var _iterator = _createForOfIteratorHelper(command.command),
+      var _iterator = _createForOfIteratorHelper(command.all_items_order),
           _step;
 
       try {

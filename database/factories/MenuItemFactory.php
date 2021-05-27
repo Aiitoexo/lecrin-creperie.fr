@@ -34,15 +34,36 @@ class MenuItemFactory extends Factory
         $total_tva = (($price_ht * $tva->tva) / 100);
         $price_ttc = $price_ht + $total_tva;
 
+        $drink = rand(1, 10);
+
+        if ($drink >= 8) {
+            $type_item = 2;
+        } else {
+            $type_item = 1;
+        }
+
+        if ($type_item === 2) {
+            $cat_drink_id = rand(1, 5);
+            $capacity = 'Yolo';
+            $section = 7;
+        } else {
+            $cat_drink_id = null;
+            $capacity = null;
+            $section = rand(1, 6);
+        }
+
         return [
+            'type_items_id' => $type_item,
             'name' => $this->faker->unique()->firstName,
             'img' => 'https://placeimg.com/480/480/nature',
             'alt_img' => $this->faker->text,
-            'price_ht' => $price_ht,
+            'category_drinks_id' => $cat_drink_id,
+            'capacity_drink' => $capacity,
+            'price_ttc' => $price_ttc,
             'tva_id' => $tva->id,
             'total_tva' => $total_tva,
-            'price_ttc' => $price_ttc,
-            'section_id' => $all_section[rand(0, ($count_section - 1))]->id,
+            'price_ht' => $price_ht,
+            'section_id' => $section,
             'menu' => rand(0, 1)
         ];
     }

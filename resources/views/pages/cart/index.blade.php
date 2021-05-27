@@ -10,7 +10,7 @@
                     </div>
                     <p class="col-span-3 text-white">{{ $item['name'] }}</p>
                     <div class="col-span-2 h-full flex justify-center">
-                        <p class="w-2/3 flex justify-center items-center h-full border-2 border-yellow-500 rounded-xl bg-white">{{ $item['price'] }}€</p>
+                        <p class="w-2/3 flex justify-center items-center h-full border-2 border-yellow-500 rounded-xl bg-white">{{ $item['price_ttc'] }}€</p>
                     </div>
                     <div class="col-span-2 flex items-center justify-evenly text-white">
                         <form action="{{ route('less.item', [$item['id']]) }}" method="post">

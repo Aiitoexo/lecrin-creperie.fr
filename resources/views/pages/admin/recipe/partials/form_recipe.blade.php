@@ -19,11 +19,11 @@
         </div>
 
         <div>
-            <input name="price" id="price" type="text" placeholder="Prix">
+            <input name="price_ht" id="price_ht" type="text" placeholder="Prix">
         </div>
 
         <ul>
-            <select name="section" id="section">
+            <select name="section_id" id="section_id">
                 <option value="">Section</option>
                 @foreach($all_sections as $section)
                     <option value="{{ $section->id }}">{{ $section->name }}</option>
@@ -40,6 +40,13 @@
         <div>
             <input class="w-96" name="alt_img" id="alt_img" type="text" placeholder="Description Image">
         </div>
+
+        <select name="tva_id" id="tva_id">
+            <option value="">TVA</option>
+            @foreach ($all_tva as $tva)
+                <option value="{{ $tva->id }}">{{ $tva->name_tva.' '.$tva->tva.'%' }}</option>
+            @endforeach
+        </select>
     </div>
 
     <hr>
@@ -71,6 +78,18 @@
             <option value="1">Oui</option>
             <option value="0">Non</option>
         </select>
+    </div>
+
+    <div class="flex items-center">
+        <div>
+            <input name="extra" type="checkbox">
+            <label for="extra">Ajoutez au Supplement</label>
+        </div>
+
+        <div class="flex flex-col">
+            <label for="price_extra_ht">Prix Supplement</label>
+            <input name="price_extra_ht" type="text">
+        </div>
     </div>
 
     <button class="button" type="submit">Creer</button>

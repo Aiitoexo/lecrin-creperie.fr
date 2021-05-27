@@ -1,11 +1,14 @@
 @if (isset($all_sections))
     <div class="w-8/12 mx-auto">
-        <ul class="grid grid-cols-10 rounded-b-4xl overflow-hidden shadow-3xl">
+        <ul class="rounded-b-4xl overflow-hidden shadow-3xl flex">
+            <li class="flex-1">
+                <button type="button" class="button_section w-full h-14 text-white focus:outline-none py-8 flex justify-center items-center bg-yellow-500 text-gray-800">
+                    Menu
+                </button>
+            </li>
             @foreach ($all_sections as $section)
-                <li class="col-span-2 flex justify-center">
-                    <button id="button_section" type="button"
-                            class="w-full h-12 text-white focus:outline-none
-                            {{ $loop->first ? 'bg-yellow-500 text-gray-800' : 'bg-gray-800 text-white' }}">
+                <li class="flex-1">
+                    <button type="button" class="button_section w-full h-14 text-white focus:outline-none py-8 flex justify-center items-center bg-gray-800 text-white">
                         {{ $section->name }}
                     </button>
                 </li>

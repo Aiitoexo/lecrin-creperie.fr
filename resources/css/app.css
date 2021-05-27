@@ -35,3 +35,10 @@ body {
     transition: ease 0.5s;
     box-shadow: inset 0px 0px 8px rgba(0, 0 , 0 ,0.5);
 }
+
+.custom-file-input::-webkit-file-upload-button, #input_file {
+    visibility: hidden;
+}
+
+
+

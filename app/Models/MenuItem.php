@@ -11,9 +11,16 @@ class MenuItem extends Model
         'name',
         'img',
         'alt_img',
-        'price',
-        'section',
+        'price_ht',
+        'tva_id',
+        'total_tva',
+        'price_ttc',
+        'section_id',
         'menu'
+    ];
+
+    protected $casts = [
+        'active' => 'boolean'
     ];
 
     use HasFactory;
@@ -31,5 +38,9 @@ class MenuItem extends Model
     public function sectionMenu()
     {
         return $this->belongsTo(SectionMenu::class, 'section_id');
+    }
+
+    public function tvaItems() {
+        return $this->belongsTo(TvaRestaurant::class, 'tva_id');
     }
 }

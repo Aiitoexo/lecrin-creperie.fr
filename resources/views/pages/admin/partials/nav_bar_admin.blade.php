@@ -10,6 +10,8 @@
 
         <a class="w-full py-3 hover:bg-yellow-400" href="{{ route('admin.recipe') }}">Recipes</a>
 
-        <a class="w-full py-3 hover:bg-yellow-400" href="{{ route('admin.ingredient.allergen') }}">Ingredient/Allergen</a>
+        <a class="w-full py-3 hover:bg-yellow-400" href="{{ route('admin.settings.ingredient.allergen') }}">Settings</a>
+
+        <a class="w-full py-3 hover:bg-yellow-400" href="{{ route('admin.promo') }}">Promos</a>
     </div>
 </div>

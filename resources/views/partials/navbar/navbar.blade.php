@@ -1,4 +1,4 @@
-<div class="fixed top-0 border-green-600 h-16 md:h-20 lg:h-24 xl:h-32 w-full z-50">
+<div class="sticky top-0 border-green-600 h-16 md:h-20 lg:h-24 xl:h-32 w-full z-50">
     <div class="grid grid-cols-6 h-full xl:hidden relative bg-gradient-to-b from-yellow-500 to-yellow-300">
         <div class="col-span-1 flex justify-center items-center">
             <button id="hamburger">

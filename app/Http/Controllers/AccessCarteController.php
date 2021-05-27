@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Postal;
+use App\Services\CartService;
 use Illuminate\Http\Request;
 use function redirect;
 use function route;
@@ -21,7 +22,7 @@ class AccessCarteController extends Controller
         return view('pages.menu.access_carte');
     }
 
-    public function verification(Request $request)
+    public function verification(Request $request, CartService $cart)
     {
         $type_command = $request->validate([
             'type_command' => 'string|required',
@@ -31,6 +32,7 @@ class AccessCarteController extends Controller
         if ($request['type_command'] == 'emporter') {
 
             session()->put('type_command', $type_command['type_command']);
+            $cart->totalPriceItems();
             return redirect(route('menu'));
 
         } elseif ($request['type_command'] == 'livraison') {
@@ -38,6 +40,7 @@ class AccessCarteController extends Controller
             if (Postal::where('postal_code', $type_command['postal_code'])->exists()) {
 
                 session()->put('type_command', $type_command['type_command']);
+                $cart->totalPriceItems();
                 return  redirect(route('menu'));
 
             } else {

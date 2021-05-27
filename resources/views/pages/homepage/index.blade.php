@@ -1,9 +1,7 @@
 @extends('layouts.default')
 
 @section('main')
-    <div class="mt-60 h-full flex justify-center">
-        @include('partials.type_command')
-    </div>
+    @include('partials.type_command')
 @endsection
 
 @section('js')

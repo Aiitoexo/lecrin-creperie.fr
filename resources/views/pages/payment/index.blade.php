@@ -22,17 +22,16 @@
                 <div class="h-96 w-full bg-white rounded-xl border-2 border-yellow-500 flex flex-col">
                     @foreach ($commandClient as $item)
                         <div class="w-full flex justify-evenly grid grid-cols-4">
-                            <p class="col-span-1">{{ $item['name'] }}</p>
-                            <p class="col-span-1">{{ $item['price'] }}€</p>
-                            <p class="col-span-1">x{{ $item['quantity'] }}</p>
-                            <p class="col-span-1">{{ $item['total_price_items'] }}€</p>
+                            <p class="col-span-1">{{ $item->name }}</p>
+                            <p class="col-span-1">{{ $item->price_ttc }}€</p>
+                            <p class="col-span-1">x{{ $item->quantity }}</p>
+                            <p class="col-span-1">{{ $item->total_price_ttc }}€</p>
                         </div>
                     @endforeach
                     <div>
                         <p>{{ $orderClient->price }}€</p>
                     </div>
                 </div>
-
 
                 <div class="w-full flex justify-evenly gap-x-14 pt-4">
                     <form class="w-full flex justify-center" action="{{ route('payment.info.edit', ['id' => session('id_order')]) }}" method="post">

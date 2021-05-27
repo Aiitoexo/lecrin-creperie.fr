@@ -10,7 +10,7 @@ class IngredientRecipe extends Model
     use HasFactory;
 
     protected $fillable = [
-      'menu',
-      'ingredient'
+      'menu_id',
+      'ingredient_id'
     ];
 }

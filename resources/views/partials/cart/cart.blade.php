@@ -26,7 +26,8 @@
             </div>
 
             <div class="flex flex-col justify-center items-center h-1/6">
-                <p class="mb-4">Total Commande : {{ session('cart_total', 0) }}</p>
+                <p>Total Commande : {{ session('cart_total', 0) }}</p>
+                <p class="mb-4">{{ session('livraison_price') }}</p>
                 <a href="{{ route('cart') }}" class="py-2 px-4 bg-purple-400">Commander</a>
             </div>
         @else

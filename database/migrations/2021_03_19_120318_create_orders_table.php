@@ -27,7 +27,7 @@ class CreateOrdersTable extends Migration
             $table->string('postal')->nullable();
             $table->longText('text')->nullable();
             $table->string('type_command');
-            $table->longText('command');
+//            $table->longText('command');
             $table->decimal('price');
             $table->boolean('is_prepared')->default(false);
             $table->boolean('is_delivered')->default(false);

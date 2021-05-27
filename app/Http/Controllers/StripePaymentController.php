@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CartOrder;
+use App\Models\MenuItem;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -12,7 +14,6 @@ use Stripe\Webhook;
 use UnexpectedValueException;
 use function abort;
 use function config;
-use function dd;
 use function floatval;
 use function generateOrderReference;
 use function redirect;
@@ -33,7 +34,7 @@ class StripePaymentController extends Controller
     {
         $orderClient = Order::findOrFail(session('id_order'));
 
-        $commandClient = $orderClient['command'];
+        $commandClient = $orderClient->allItemsOrder;
 
         return view('pages.payment.index', [
             'orderClient' => $orderClient,
@@ -81,29 +82,111 @@ class StripePaymentController extends Controller
 
     public function info(Request $request)
     {
-        $rules = [
-            'last_name' => 'required|string',
-            'first_name' => 'required|string',
-            'phone' => 'required|string',
-            'mail' => 'required|email',
-            'text' => 'nullable|string'
-        ];
+        if (!session('id_order')) {
+            $rules = [
+                'last_name' => 'required|string',
+                'first_name' => 'required|string',
+                'phone' => 'required|string',
+                'mail' => 'required|email',
+                'text' => 'nullable|string'
+            ];
 
-        if (session('type_command') == 'livraison') {
-            $rules['adresse'] = 'string';
-            $rules['city'] = 'string';
-            $rules['postal'] = 'string|exists:postals,postal_code';
+            if (session('type_command') == 'livraison') {
+                $rules['adresse'] = 'string';
+                $rules['city'] = 'string';
+                $rules['postal'] = 'string|exists:postals,postal_code';
+            }
+
+            $data = $request->validate($rules);
+
+            $data['reference'] = generateOrderReference();
+            $data['status'] = Order::PENDING;
+            $data['type_command'] = session('type_command');
+            $data['price'] = session('cart_total');
+
+            $order = Order::create($data);
+
+            $cart_items = session('cart');
+
+            foreach ($cart_items as $item) {
+
+                $item_menu = MenuItem::findOrFail($item['id']);
+
+                if ($item_menu->sectionMenu->name === 'Boisson') {
+                    $capacity_drink = $item_menu->capacity_drink;
+                } else {
+                    $capacity_drink = null;
+                }
+
+                CartOrder::create([
+                    'order_id' => $order->id,
+                    'menu_item_id' => $item['id'],
+                    'name' => $item['name'],
+                    'detail' => $capacity_drink,
+                    'tva' => $item['tva'],
+                    'price_ht' => $item['price_ht'],
+                    'total_tva' => $item['total_tva'],
+                    'price_ttc' => $item['price_ttc'],
+                    'img' => $item['img'],
+                    'quantity' => $item['quantity'],
+                    'total_price_ht' => $item['price_ht'] * $item['quantity'],
+                    'total_price_tva' => $item['total_tva'] * $item['quantity'],
+                    'total_price_ttc' => ($item['price_ht'] * $item['quantity']) + ($item['total_tva'] * $item['quantity']),
+                ]);
+            }
+
+        } else {
+
+            $rules = [
+                'last_name' => 'required|string',
+                'first_name' => 'required|string',
+                'phone' => 'required|string',
+                'mail' => 'required|email',
+                'text' => 'nullable|string'
+            ];
+
+            if (session('type_command') == 'livraison') {
+                $rules['adresse'] = 'string';
+                $rules['city'] = 'string';
+                $rules['postal'] = 'string|exists:postals,postal_code';
+            }
+
+            $data = $request->validate($rules);
+
+            $data['reference'] = generateOrderReference();
+            $data['status'] = Order::PENDING;
+            $data['type_command'] = session('type_command');
+            $data['price'] = session('cart_total');
+
+            $order = Order::findOrFail(session('id_order'));
+            $order->update($data);
+
+            $all_cart_items = CartOrder::where('order_id', $order->id);
+
+            foreach ($all_cart_items as $cart_item) {
+                $item_delete = CartOrder::findOrFail($cart_item->id);
+                $item_delete->delete();
+            }
+
+            $cart_items = session('cart');
+
+            foreach ($cart_items as $item) {
+                CartOrder::create([
+                    'order_id' => $order->id,
+                    'menu_item_id' => $item['id'],
+                    'name' => $item['name'],
+                    'tva' => $item['tva'],
+                    'price_ht' => $item['price_ht'],
+                    'total_tva' => $item['total_tva'],
+                    'price_ttc' => $item['price_ttc'],
+                    'img' => $item['img'],
+                    'quantity' => $item['quantity'],
+                    'total_price_ht' => $item['price_ht'] * $item['quantity'],
+                    'total_price_tva' => $item['total_tva'] * $item['quantity'],
+                    'total_price_ttc' => ($item['price_ht'] * $item['quantity']) + ($item['total_tva'] * $item['quantity']),
+                ]);
+            }
         }
-
-        $data = $request->validate($rules);
-
-        $data['reference'] = generateOrderReference();
-        $data['status'] = Order::PENDING;
-        $data['type_command'] = session('type_command');
-        $data['command'] = session('cart');
-        $data['price'] = session('cart_total');
-
-        $order = Order::create($data);
 
         session()->put('id_order', $order->id);
 
@@ -189,13 +272,15 @@ class StripePaymentController extends Controller
         if ($event->type === 'checkout.session.completed') {
 
             $session = $event->data->object;
-
+//            $this->createOrder($session->client_reference_id);
             if ($session->payment_status === 'paid') {
 
                 Log::info($session);
 
                 $this->createOrder($session->client_reference_id);
             }
+
+            //TODO:
 
         }
 

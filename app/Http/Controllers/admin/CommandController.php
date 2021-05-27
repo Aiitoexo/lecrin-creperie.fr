@@ -27,10 +27,7 @@ class CommandController extends Controller
 
     public function command_emporter()
     {
-        $result_command_emporter = Order::where('status', 'IN_PROGRESS')->where('type_command', 'emporter')->get()->map(function ($commande){
-            $commande->command = array_values($commande->command);
-            return $commande;
-        })->toArray();
+        $result_command_emporter = Order::with('allItemsOrder')->where('status', 'IN_PROGRESS')->where('type_command', 'emporter')->latest()->get();
 
         return response()->json($result_command_emporter);
     }

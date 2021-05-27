@@ -3,8 +3,8 @@ var __webpack_exports__ = {};
 /*!*******************************************!*\
   !*** ./resources/js/show_section_menu.js ***!
   \*******************************************/
-var all_button_section = document.querySelectorAll('#button_section');
-var all_section = document.querySelectorAll('#section');
+var all_button_section = document.querySelectorAll('.button_section');
+var all_section = document.querySelectorAll('.section');
 
 var _loop = function _loop(i) {
   all_button_section[i].addEventListener('click', function () {
@@ -60,6 +60,24 @@ for (var _i3 = 0; _i3 < button_modal.length; _i3++) {
   button_modal[_i3].addEventListener('click', function () {
     modal_type_command.classList.remove('hidden');
   });
+}
+
+var button_modal_items = document.querySelectorAll('.button_modal_items');
+var modal_items = document.querySelectorAll('.modal_items');
+
+var _loop4 = function _loop4(_i4) {
+  button_modal_items[_i4].addEventListener('click', function () {
+    for (var j = 0; j < button_modal_items.length; j++) {
+      modal_items[j].classList.remove('hidden');
+      modal_items[j].classList.add('hidden');
+    }
+
+    modal_items[_i4].classList.remove('hidden');
+  });
+};
+
+for (var _i4 = 0; _i4 < button_modal_items.length; _i4++) {
+  _loop4(_i4);
 }
 /******/ })()
 ;

@@ -11,6 +11,6 @@ class SectionMenu extends Model
 
     public function allMenuItemBySection()
     {
-        return $this->hasMany(MenuItem::class, 'section');
+        return $this->hasMany(MenuItem::class, 'section_id');
     }
 }

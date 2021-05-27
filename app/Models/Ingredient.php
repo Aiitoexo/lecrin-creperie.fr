@@ -11,10 +11,15 @@ class Ingredient extends Model
 
     protected $fillable = [
         'name',
+        'category_ingredients_id'
     ];
 
     public function isMenuIngredient()
     {
         return $this->belongsToMany(MenuItem::class, 'ingredient_recipes', 'ingredient_id', 'menu_id');
+    }
+
+    public function categoryIngredient() {
+        return $this->belongsTo(CategoryIngredient::class, 'category_ingredients_id');
     }
 }

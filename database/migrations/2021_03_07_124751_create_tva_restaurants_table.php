@@ -16,7 +16,7 @@ class CreateTvaRestaurantsTable extends Migration
         Schema::create('tva_restaurants', function (Blueprint $table) {
             $table->id();
             $table->string('name_tva')->unique();
-            $table->float('tva');
+            $table->decimal('tva');
             $table->timestamps();
         });
     }

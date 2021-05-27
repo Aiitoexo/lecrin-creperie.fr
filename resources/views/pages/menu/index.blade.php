@@ -13,11 +13,32 @@
     @endif
 
     <div class="overflow-hidden">
+        @if (!empty($all_promos_active))
+            <div class="w-full flex justify-center h-32">
+                <div class="w-7/12 bg-yellow-500 border-8 border-gray-800 rounded-xl p-6">
+                    @foreach($all_promos_active as $promo_active)
+                        <div class="w-full">
+                            @if ($promo_active->type_code === true)
+                                @include('pages.homepage.partials.promo_code')
+                            @elseif($promo_active->type_quantity === true)
+                                @include('pages.homepage.partials.promo_quantity')
+                            @elseif($promo_active->type_price === true)
+                                @include('pages.homepage.partials.promo_price')
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        @endif
+
+        @include('pages.menu.partials.menu')
         @include('pages.menu.partials.burger')
         @include('pages.menu.partials.wrap')
+        @include('pages.menu.partials.burger_enfant')
+        @include('pages.menu.partials.box_apero')
+        @include('pages.menu.partials.accompagnement')
         @include('pages.menu.partials.desserts')
         @include('pages.menu.partials.boisson')
-        @include('pages.menu.partials.box_apero')
 
         @include('partials.cart.cart')
     </div>

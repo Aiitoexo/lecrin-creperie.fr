@@ -1,5 +1,5 @@
-const all_button_section = document.querySelectorAll('#button_section')
-const all_section = document.querySelectorAll('#section')
+let all_button_section = document.querySelectorAll('.button_section')
+let all_section = document.querySelectorAll('.section')
 
 for (let i = 0; i < all_button_section.length; i++) {
     all_button_section[i].addEventListener('click', function () {
@@ -41,5 +41,19 @@ const modal_type_command = document.querySelector('#modal_type_command')
 for (let i = 0; i < button_modal.length; i++) {
     button_modal[i].addEventListener('click', function () {
         modal_type_command.classList.remove('hidden')
+    })
+}
+
+const button_modal_items = document.querySelectorAll('.button_modal_items')
+const modal_items = document.querySelectorAll('.modal_items')
+
+
+for (let i = 0; i < button_modal_items.length; i++) {
+    button_modal_items[i].addEventListener('click', function () {
+        for (let j = 0; j < button_modal_items.length; j++) {
+            modal_items[j].classList.remove('hidden')
+            modal_items[j].classList.add('hidden')
+        }
+        modal_items[i].classList.remove('hidden')
     })
 }

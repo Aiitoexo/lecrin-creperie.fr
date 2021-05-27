@@ -38,4 +38,8 @@ class Order extends Model
       'command' => 'array'
     ];
 
+    public function allItemsOrder() {
+        return $this->hasMany(CartOrder::class);
+    }
+
 }

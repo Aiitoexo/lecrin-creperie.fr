@@ -15,15 +15,21 @@ class CreateMenuItemsTable extends Migration
     {
         Schema::create('menu_items', function (Blueprint $table) {
             $table->id();
+            $table->boolean('active')->default(true);
+            $table->unsignedBigInteger('type_items_id');
+            $table->foreign('type_items_id')->references('id')->on('type_items');
             $table->string('name')->unique();
             $table->string('img');
             $table->text('alt_img');
 //            img - > unique
-            $table->float('price_ht');
+            $table->unsignedBigInteger('category_drinks_id')->nullable();
+            $table->foreign('category_drinks_id')->references('id')->on('category_drinks');
+            $table->string('capacity_drink')->nullable();
+            $table->decimal('price_ht');
             $table->unsignedBigInteger('tva_id');
             $table->foreign('tva_id')->references('id')->on('tva_restaurants');
-            $table->float('total_tva');
-            $table->float('price_ttc');
+            $table->decimal('total_tva');
+            $table->decimal('price_ttc');
             $table->unsignedBigInteger('section_id');
             $table->foreign('section_id')->references('id')->on('section_menus');
             $table->boolean('menu');

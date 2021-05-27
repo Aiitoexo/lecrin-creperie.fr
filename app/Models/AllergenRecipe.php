@@ -10,7 +10,7 @@ class AllergenRecipe extends Model
     use HasFactory;
 
     protected $fillable = [
-      'menu',
-      'allergen'
+      'menu_id',
+      'allergen_id'
     ];
 }

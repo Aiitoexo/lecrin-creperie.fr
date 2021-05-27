@@ -15,14 +15,16 @@
         <title>Document</title>
     </head>
     <body>
-        <div class="relative">
-            <div class="test bg-cover bg-center bg-no-repeat fixed top-0 h-screen w-screen"
-                 style="background-image: url('{{ asset('img/bg-header.png') }}')">
+        <div class="relative bg-cover bg-center bg-no-repeat h-screen w-screen">
+            <img class="w-full h-full bg-header" src="{{ asset('img/bg-header.png') }}" alt="">
+            <div class="absolute top-0 left-0 z-10 h-full w-full overflow-y-auto">
+                @yield('body')
             </div>
-
-            @yield('body')
         </div>
     </body>
+    <footer>
+        @yield('footer')
+    </footer>
     @yield('js')
     <script src="{{ mix('js/show_sub_nav_mobile.js') }}"></script>
 </html>
