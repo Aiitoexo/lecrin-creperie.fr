@@ -10,6 +10,8 @@
         <script src="https://js.stripe.com/v3/"></script>
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/css/splide.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
         @yield('css')
         <title>Document</title>

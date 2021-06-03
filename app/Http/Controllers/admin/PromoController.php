@@ -182,7 +182,7 @@ class PromoController extends Controller
                         $data['thu'] = true;
                         break;
                     case 'friday' :
-                        $data['fri'] = true;
+                        $data['fri '] = true;
                         break;
                     case 'saturday' :
                         $data['sat'] = true;
