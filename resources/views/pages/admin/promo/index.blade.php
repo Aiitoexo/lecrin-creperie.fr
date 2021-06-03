@@ -389,7 +389,6 @@
         </form>
 
         <div class="w-4/12 h-full bg-white shadow-2xl rounded-xl">
-        <div class="w-4/12 h-full bg-white shadow-2xl rounded-xl">
             @foreach ($all_promos as $promo)
                 <div>{{ $promo->name }}</div>
             @endforeach
