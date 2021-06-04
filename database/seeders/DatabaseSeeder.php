@@ -202,9 +202,9 @@ class DatabaseSeeder extends Seeder
         ];
 
         User::create([
-            'name' => 'Aiito',
-            'email' => 'aiitoexo@gmail.com',
-            'password' => '$2y$10$RslRsj4sBizFEkJAVWS3h.H5XjciDRN3whHBR18wAZ5fwyV6p3/pu'
+            'name' => 'admin',
+            'email' => 'admintest@gmail.com',
+            'password' => '$2y$10$ziuWuOuA.cJsSz56DbrhkeLbPHIqFk6OPEQ.rX2n0kU7qdOT/Up/C'
         ]);
 
         for ($i = 0; $i < count($table_section); $i++) {
